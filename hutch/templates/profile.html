@@ -1,0 +1,32 @@
+<!--
+    the profile 
+    1. display the total number of rabbits
+    2. username, display, name of rabbitry
+    3. total buck, does, dead, litters, weaned, sold, purchased
+    4. 
+    
+--> {% extends 'base.html' %} 
+{% block content %}
+
+
+{% if user.is_authenticated %}
+
+<b>Hutch ID: </b> {{ user.username }} <br>
+<b>Email: </b> {{ user.email }}.
+<br>
+{% endif %}
+
+<h2 class='text-center'> Hutch Details </h2>
+{% for rabbit in user.rabbits %}
+
+<p> Total Rabbits Alive in Hutch:</p>{{ rabbit.query.count() }}
+<p> Total available <b>bucks</b>: </p>
+<p> Total available <b>does</b>: </p>
+<p> Total <b>weaned</b>: </p>
+<p> Total <b>sold</b>: </p>
+<p> Total <b>purchased</b>: </p>
+
+{% endfor %}
+
+
+{% endblock %}

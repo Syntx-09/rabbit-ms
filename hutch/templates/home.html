@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %} HuTcH {% endblock %}
+
+{% block content %}
+<header id="companyHead">
+    MY BURROW 
+</header>
+    
+    
+
+    <div class="menu">    
+        <ul>
+            <li><a href="{{url_for('views.list')}}"><span> Rabbit List </span></a></li>
+            <li><a href="{{url_for('views.add')}}"><span> Add Rabbit </span></a></li>
+            <li><span> Category </span>
+                <!--
+                    <select name="Category">
+                <option value="" selected>View Category</option>
+                <option value="meat">Meat</option>
+                <option value="breeder">Breeder</option>
+                <option value="culled">Culled</option></li>
+                    -->
+
+            </select>
+        </ul>
+    </div>
+
+    {{username}}
+{% endblock %}

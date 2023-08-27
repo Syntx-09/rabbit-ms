@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if user.rabbit %}
+
+        <tr>
+            <th  scope="row"> {{ rabbit.name }} <br> </th>
+            <td> {{ rabbit.category }}  </td>
+            <td> {{ rabbit.sex }}  </td>
+
+            </td>
+
+            {% endif %}
+
+            <hr>
+                        <th  scope="row"> {{ myRabbit.user_id }} <br> </th>
+
+            <td> Remove</td>
+        </tr>
+
+{% endblock %}

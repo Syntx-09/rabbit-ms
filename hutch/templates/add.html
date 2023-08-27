@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block title %} Add Rabbit {% endblock %}
+
+{% block content %}
+
+{{current_user.id }}
+
+        <div class="row justify-content-md-center">
+    <form method="POST" >
+
+        <div class="form-group  align-items-center">     
+            <fieldset>
+                <legend>Rabbit Details</legend>
+                <div >
+                    <label  class="form-check-label" for="name">Tag ID/Hutch ID:</label>
+                        <input class="form-control" type="text" id="name" name="name" required />
+                </div>
+  
+                <div>
+                    <label class="form-check-label" for="sex">Sex:</label> 
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" id="" name="sex" value="buck" required /> 
+                        Buck</label> 
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" id="" name="sex" value="doe" required />
+                        Doe
+                    </div>
+                </div>
+                
+                <div>
+                    <label class="form-check-label" for="category">Category:</label>
+                    <select class="custom-select" id="category" name="category">
+                        <option value="angora"> Angora</option>
+                        <option value="palomino"> palomino</option>
+                        <option value="harlequinn"> Harlequin</option>
+
+                    </select>
+                </div>
+                
+                    
+            </fieldset>
+        </div> 
+            <div>
+                <input type="submit"  class="btn btn-primary" value="Add to Hutch"/>
+            </div>   
+      
+    </form>
+        </div>
+{% endblock %}

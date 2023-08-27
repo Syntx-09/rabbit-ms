@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form action="#" method="post">
+    <div class="form-group">
+        <fieldset>
+            <legend> Input Login Details </legend>
+
+            <label for="username">Username:</label>
+            <input class="form-control" type="text" id="username" name="username">
+
+            <br>
+            <label for="password">Password:</label>
+            <input class="form-control" type="password" id="password" name="password"></p>
+        </fieldset>
+        
+        <input class="btn btn-primary" type="submit" value="Login">
+    </div>
+</form>
+{% endblock %}
