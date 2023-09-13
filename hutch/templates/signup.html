@@ -3,9 +3,34 @@
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="stylesheet" href="../static/css/style.css" />
+          <link href="{{ url_for('static', filename='css/bootstrap4-4.css') }}" rel="stylesheet">
     </head>
     <body>
+    
+    
         <div class="container">
+    <!-- Nav Bar -->
+    <div>
+        <nav class="navbar navbar-expand-sm navbar-dark bg-dark"><span class="text-center navbar-brand"><a href="{{url_for('views.home')}}"><img src="/static/images/bunny.png" alt="bunny.png" height="10%" width="10%"><span class="font-weight-bold"> HuTcH </span></a></span>
+            <ul class="navbar-nav">
+                        {%if user.is_authenticated %}
+                <li class="nav-item"> <a href="{{url_for ('auth.logout')}}" class="nav-link">Logout </a> </li>
+                <li class="nav-item"> <a href="{{url_for ('views.profile')}}" class="nav-link"> Profile </a> </li>
+                <li class="nav-item"> <a href="{{url_for ('views.add')}}" class="nav-link">Add a Rabbit </a> </li>
+                <li class="nav-item"> <a href="{{url_for('views.list')}}" class="nav-link">All Rabbits </a>
+                        </li>
+
+                        {% else %}
+                        
+                <li class="nav-item"> <a href="/login" class="nav-link">Login</a> </li>
+                <li class="nav-item"> <a href="{{url_for ('auth.register')}}" class="nav-link">Register </a> </li> 
+            </ul>
+                        {% endif %}
+        </nav>
+    </div>
+
+            <!-- End Nav -->
+        
             <h1 class="form-title"> Sign up</h1>
             <form  method="POST">
                 <div class="main-user-info">

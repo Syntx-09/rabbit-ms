@@ -1,22 +1,108 @@
 {% extends 'base.html' %}
 
+{% block title %} {{ rabbit['name'] }} - Profile {% endblock %}
 {% block content %}
 
-{% if user.rabbit %}
+{% if rabbit %}
+<div class="col-md-6 col-lg-8 col-sm-8 mx-auto">
+<table class="table table-striped table-sm table-hover">
+    <tr>
+        <th colspan="2" class="text-center"> {{ rabbit.name }} profile </th>
+    </tr>
 
-        <tr>
-            <th  scope="row"> {{ rabbit.name }} <br> </th>
-            <td> {{ rabbit.category }}  </td>
-            <td> {{ rabbit.sex }}  </td>
+  <tbody>
+    <tr>
+      <th scope="row">Sex</th>
+      <td>{{ rabbit['sex'] }}</td>
+    </tr>
+    <tr>
+      <th scope="row">Category</th>
+      <td>{{ rabbit['category'] }}</td>
+    </tr>
+    <tr>
+      <th scope="row"> Kindled date</th>
+      <td>{{ rabbit['kindled_date'].strftime('%Y-%m-%d') }}</td>
+    </tr>
+  </tbody>
+</table>
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editRabbitBio">
+  Update details
+  </button>
+</div>
 
-            </td>
+
+<!-- Edit Modal -->
+<div class="modal fade" id="editRabbitBio" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+     aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Edit {{ rabbit.name }} details</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+          <form method="POST">
+                  <div class="form-group  align-items-center">
+                      <fieldset>
+                          <div >
+                              <label  class="form-check-label" for="name">Tag ID/Hutch ID:</label>
+                                  <input class="form-control" type="text" id="name" name="name"/>
+                          </div>
+
+                          <div>
+                              <label class="form-check-label" for="sex">Sex:</label>
+                              <div class="form-check form-check-inline">
+                                  <input class="form-check-input" type="radio" id="" name="sex" value="buck" required />
+                                  Buck</label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                  <input class="form-check-input" type="radio" id="" name="sex" value="doe" required />
+                                  Doe
+                              </div>
+                          </div>
+
+                          <div>
+                              <label class="form-check-label" for="category">Category:</label>
+                              <select class="custom-select" id="category" name="category">
+                                  <option value="angora"> Angora</option>
+                                  <option value="palomino"> palomino</option>
+                                  <option value="harlequinn"> Harlequin</option>
+                              </select>
+                          </div>
+
+                          <div>
+                            <label class="form-check-label" for="kindle-date">kindled date:</label>
+                            <input type="date" class="form-control" name="kindle-date" />
+                          </div>
+
+                          <div>
+                              {% if rabbit.sex == 'doe'  %}
+                              <label for="EKD">Expected kindle date</label>
+                              <input type="date" class="form-control" name="EKD"
+                              {% endif %}
+                          </div>
+
+
+                      </fieldset>
+                  </div>
+                      <div>
+                          <input type="submit"  class="btn btn-primary" value="Add to Hutch"/>
+                      </div>
+
+              </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
 
             {% endif %}
 
-            <hr>
-                        <th  scope="row"> {{ myRabbit.user_id }} <br> </th>
-
-            <td> Remove</td>
-        </tr>
 
 {% endblock %}

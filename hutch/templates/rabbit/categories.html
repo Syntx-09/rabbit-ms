@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if user.rabbits %}
+    {% for rabbit in user.rabbits %}
+        {{ rabbit['category'] }}
+    {% endfor %}
+{% endif %}
+
+{% endblock %}

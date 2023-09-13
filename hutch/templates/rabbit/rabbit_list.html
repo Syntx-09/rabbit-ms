@@ -1,0 +1,45 @@
+{% extends 'base.html' %} 
+{% block title %} Rabbit List {% endblock %}
+{% block content %}
+
+
+
+<div class="justify-content-md-center table-responsive-sm mt-2">
+
+    <table class="table mx-auto table-striped d-table table-hover col-sm-8 col-10 table-sm" >
+        <thead class="table-primary">
+        <tr>
+            <th scope="col"> Name/ID </th>
+            <th scope="col"> Description </th>
+            <th scope="col"> Sex </th>
+            <th scope="col">  </th>
+            <th scope="col">  </th>
+
+        </tr>
+    </thead>
+            <tbody>
+    {% if user.rabbits %}
+        {% for rabbit in user.rabbits %}
+                <tr>
+                    <th  scope="row"> {{ rabbit.name }} <br> </th>
+                    <td> {{ rabbit.category }}  </td>
+                    <td> {{ rabbit.sex }}  </td>
+                    <td> <a href="{{url_for ('views.get_rabbit', rabbit_id =rabbit.id )}}"
+                            class="btn btn-info">Details</a>
+                    </td>
+                    <td > <i class="bi bi-trash"></i> Remove </td><i class="bi bi-person">
+                        {% endfor%}
+                </tr>
+    {% else %}
+            <tr><td colspan="5" class="text-center">No rabbit available in hutch.. </td></tr>
+            <tr><td colspan="5" class=" text-center"><a  class="btn btn-info" href="{{url_for ('views.add')}}">Add a
+                rabbit
+            </a></td></tr>
+
+    {% endif %}
+    </tbody>
+</table>
+</div>
+
+
+{% endblock %}
