@@ -23,10 +23,13 @@
             <th  scope="row"> {{ rabbit.name }} <br> </th>
             <td> {{ rabbit.category }}  </td>
             <td> {{ rabbit.sex }}  </td>
-            <td> <a href="{{url_for ('views.rab_profile')}}" class="btn btn-info">Details</a>
+            <td> <a href="{{url_for ('views.get_rabbit', rabbit_id =rabbit.id )}}"
+                    class="btn btn-info">Details</a>
             </td>
+
             <td> Remove</td>
-        </tr> 
+        </tr>     <hr>
+            {{rabbit.id}}
         {% endfor%}
     </tbody>
 </table>
