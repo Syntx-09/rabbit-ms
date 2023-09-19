@@ -5,7 +5,10 @@
     3. total buck, does, dead, litters, weaned, sold, purchased
     4. 
     
---> {% extends 'base.html' %} 
+--> {% extends 'base.html' %}
+
+{% block title %} My Profile {% endblock %}
+
 {% block content %}
 
 
@@ -15,18 +18,32 @@
 <b>Email: </b> {{ user.email }}.
 <br>
 {% endif %}
+{{ sess }}
 
 <h2 class='text-center'> Hutch Details </h2>
-{% for rabbit in user.rabbits %}
+    {% if user.rabbits %} {% set my_rab = user.rabbits %}
+<p>  My total rabbits: {{ my_rab|length }}</p>
 
-<p> Total Rabbits Alive in Hutch:</p>{{ rabbit.query.count() }}
 <p> Total available <b>bucks</b>: </p>
-<p> Total available <b>does</b>: </p>
-<p> Total <b>weaned</b>: </p>
-<p> Total <b>sold</b>: </p>
-<p> Total <b>purchased</b>: </p>
+{% endif %}
 
-{% endfor %}
+<hr>
+
+
+        {% if r1 %}
+
+
+        {% endif %}
+
+<!--<p> Total available <b>does</b>: </p>-->
+<!--<p> Total <b>weaned</b>: </p>-->
+<!--<p> Total <b>sold</b>: </p>-->
+<!--<p> Total <b>purchased</b>: </p>-->
+
+<hr>
+
+
+
 
 
 {% endblock %}

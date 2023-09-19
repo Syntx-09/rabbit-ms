@@ -4,7 +4,7 @@ from os import path
 from flask_login import LoginManager
 
 db = SQLAlchemy()
-db_name = "user.db"
+db_name = "user2.db"
 
 
 def myApp():
@@ -16,9 +16,11 @@ def myApp():
    
     from .views import views
     from .auth import auth
+    from .error import error
 
     app.register_blueprint(views, url_prefix='/')
     app.register_blueprint(auth, url_prefix='/')
+    app.register_blueprint(error, url_prefix='/')
 
     from .models import User, Rabbit
 

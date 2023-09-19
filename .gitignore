@@ -3,3 +3,7 @@
 /version.txt
 /hutch/rough.py
 /hutch/user.db
+/hutch/user.db-journal
+/instance/user.db
+/instance/user2.db
+

@@ -1,14 +1,10 @@
-import sqlite3
-
-conn = sqlite3.connect('rough.db')
-
+<<<<<<< HEAD
+import uuid
 
 
 
+def gen_uid(length):
+    #generate a random alphanumeric string
+    return str(uuid.uuid4()).replace('-', '')[:length]
 
-'''class Data():
-    id = Column(primary_key=True)
-    name = Column(String(10), unique=True)
-    sex = Column(String(10))
-    category = Column(String(20))
-   ''' 
+>>>>>>> 8bdea8a5a65940ee6b93683d43397491b757e948
