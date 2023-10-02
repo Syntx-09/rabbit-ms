@@ -2,10 +2,44 @@
 
 {% block content %}
 
+
+<div class="col-8 justify-content-md-center mx-auto">
+    <form method="POST" >
+        <div class="form-group  align-items-center">
+            <fieldset>
+                <legend>Add new category</legend>
+                <div class="form-group">
+                    <label  class="form-check-label" for="addCategory">Tag ID/Hutch ID:</label>
+                        <input class="form-control" type="text" id="category" name="addCategory" required />
+                </div>
+  
+            </fieldset>
+        </div> 
+            <div>
+                <input type="submit"  class="btn btn-primary" value="Add category"/>
+            </div>   
+      
+    </form>
+</div>
+
+
+{% if categories %}
+
+{{ categories }}
+{% endif %}
+
+<hr>
+
+
+
+
+
 {% if user.rabbits %}
     {% for rabbit in user.rabbits %}
         {{ rabbit['category'] }}
     {% endfor %}
+    
+    
 {% endif %}
 
 {% endblock %}

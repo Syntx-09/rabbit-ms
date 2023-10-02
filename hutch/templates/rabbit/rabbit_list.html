@@ -53,7 +53,7 @@
                     <th  scope="row"> {{ rabbit.name }} <br> </th>
                     <td> {{ rabbit.category }}  </td>
                     <td> {{ rabbit.sex }}  </td>
-                    <td> <a href="{{url_for ('views.get_rabbit', rabbit_id =rabbit.id )}}"
+                    <td> <a href="{{url_for('views.get_rabbit', rabbit_id =rabbit.rab_uid )}}"
                             class="btn btn-info">Details</a>
                     </td>
                     <td > <i class="bi bi-trash"></i> Remove </td><i class="bi bi-person">
@@ -61,7 +61,7 @@
                 </tr>
     {% else %}
             <tr><td colspan="5" class="text-center">No rabbit available in hutch.. </td></tr>
-            <tr><td colspan="5" class=" text-center"><a  class="btn btn-info" href="{{url_for ('views.add')}}">Add a
+            <tr><td colspan="5" class=" text-center"><a  class="btn btn-info" href="{{ url_for('views.add')}}">Add a
                 rabbit
             </a></td></tr>
 

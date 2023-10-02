@@ -22,7 +22,7 @@ def myApp():
     app.register_blueprint(auth, url_prefix='/')
     app.register_blueprint(error, url_prefix='/')
 
-    from .models import User, Rabbit
+    from .models import User, Rabbit, Category
 
     login_manager = LoginManager()
     login_manager.login_view = 'auth.login'

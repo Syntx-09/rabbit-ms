@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, flash, jsonify , request, session
 from flask_login import login_required, current_user 
-from .models import Rabbit
+from .models import Rabbit, Category
 from . import db
 from datetime import datetime
 #from reloading import reloading
@@ -18,10 +18,19 @@ def home():
 def list():
     return render_template('rabbit/rabbit_list.html', user=current_user)
 
-@views.route('/list/categories')
+@views.route('/list/categories', methods=['GET', 'POST'])
 def categories():
-
-    return render_template('rabbit/categories.html', user=current_user)
+	if request.method == 'POST':
+		add_category = request.form.get('addCategory')
+		
+		new_category = Category(category=add_category)
+		db.session.add(new_category)
+		db.session.commit()
+		
+		flash("Category added successfully",  category="success")
+		
+	#categories = Category.query.filter_by(user_id = 3).all()
+	return render_template('rabbit/categories.html', user=current_user)
 
 @views.route('/add', methods=['GET', 'POST'])
 @login_required
@@ -54,12 +63,12 @@ def add():
 def profile():
     #tot = print(Rabbit.query.count())
     rabbit = Rabbit.query.filter_by()
-    r1 = dict(Rabbit(name='',sex='',category='',user_id='', kindled_date=''))
+    #r1 = dict(Rabbit(name='',sex='',uid='',category='',user_id='', kindled_date=''))
     r2 = current_user.rabbits
-    return render_template('user/user_profile.html', rabbit=rabbit, r1=r1, user = current_user)
+    return render_template('user/user_profile.html', rabbit=rabbit, user = current_user)
 
 @views.route('/rabbit/<rabbit_id>')
 @login_required
 def get_rabbit(rabbit_id): 
-    rabbit = Rabbit.query.filter_by(id = rabbit_id).first_or_404()
+    rabbit = Rabbit.query.filter_by(rab_uid = rabbit_id).first_or_404()
     return render_template('rabbit/rabbit_profile.html', rabbit=rabbit, user=current_user)
