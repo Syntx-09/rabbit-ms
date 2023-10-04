@@ -1,4 +1,4 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
 <<<<<<< HEAD
 
 =======
@@ -8,21 +8,13 @@
 
 
 
-<<<<<<< HEAD
-<div class="row justify-content-md-center">
 
-<table class="table table-striped table-hover col-7">
-    <thead class="table-primary">
-        <tr>
-            <th scope="col"> Name/SN </th>
-=======
 <div class="justify-content-md-center table-responsive-sm mt-2">
 
     <table class="table mx-auto table-striped d-table table-hover col-sm-8 col-10 table-sm" >
         <thead class="table-primary">
         <tr>
             <th scope="col"> Name/ID </th>
->>>>>>> 8bdea8a5a65940ee6b93683d43397491b757e948
             <th scope="col"> Description </th>
             <th scope="col"> Sex </th>
             <th scope="col">  </th>
@@ -30,23 +22,7 @@
 
         </tr>
     </thead>
-<<<<<<< HEAD
-    <tbody> 
-        {% for rabbit in user.rabbits %}
-        <tr>
-            <th  scope="row"> {{ rabbit.name }} <br> </th>
-            <td> {{ rabbit.category }}  </td>
-            <td> {{ rabbit.sex }}  </td>
-            <td> <a href="{{url_for ('views.get_rabbit', rabbit_id =rabbit.id )}}"
-                    class="btn btn-info">Details</a>
-            </td>
-
-            <td> Remove</td>
-        </tr>     <hr>
-            {{rabbit.id}}
-        {% endfor%}
-=======
-            <tbody>
+    <tbody>
     {% if user.rabbits %}
         {% for rabbit in user.rabbits %}
                 <tr>
@@ -66,7 +42,6 @@
             </a></td></tr>
 
     {% endif %}
->>>>>>> 8bdea8a5a65940ee6b93683d43397491b757e948
     </tbody>
 </table>
 </div>

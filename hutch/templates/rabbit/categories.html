@@ -24,8 +24,21 @@
 
 
 {% if categories %}
+    {% for category in categories %}
+{{ category.category }}
+    {% endfor %}
+{% else %}
+No Category at the moment
+{% endif %}
 
-{{ categories }}
+<hr>
+{% if categories2 %}
+    {% for category in categories2 %}
+        {{ category.category }}
+
+    {% endfor %}
+{% else %}
+No Category at the moment
 {% endif %}
 
 <hr>
@@ -34,8 +47,10 @@
 
 
 
+
 {% if user.rabbits %}
     {% for rabbit in user.rabbits %}
+
         {{ rabbit['category'] }}
     {% endfor %}
     
