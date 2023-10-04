@@ -2,10 +2,11 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from os import path 
 from flask_login import LoginManager
-# from flask_migrate import Migrate
+from flask_migrate import Migrate
 
 db = SQLAlchemy()
 db_name = "user2.db"
+# migrate = Migrate(Flask(__name__), db)
 
 
 def myApp():
@@ -14,7 +15,8 @@ def myApp():
     app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{db_name}'
     db.init_app(app)
 
-   
+    migrate = Migrate(app, db)
+
     from .views import views
     from .auth import auth
     from .error import error
