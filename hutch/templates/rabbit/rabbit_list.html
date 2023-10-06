@@ -1,9 +1,4 @@
 {% extends 'base.html' %}
-<<<<<<< HEAD
-
-=======
-{% block title %} Rabbit List {% endblock %}
->>>>>>> 8bdea8a5a65940ee6b93683d43397491b757e948
 {% block content %}
 
 
@@ -15,7 +10,7 @@
         <thead class="table-primary">
         <tr>
             <th scope="col"> Name/ID </th>
-            <th scope="col"> Description </th>
+            <th scope="col"> Breed </th>
             <th scope="col"> Sex </th>
             <th scope="col">  </th>
             <th scope="col">  </th>
@@ -32,7 +27,7 @@
                     <td> <a href="{{url_for('views.get_rabbit', rabbit_id =rabbit.rab_uid )}}"
                             class="btn btn-info">Details</a>
                     </td>
-                    <td > <i class="bi bi-trash"></i> Remove </td><i class="bi bi-person">
+                    <td> <i class="bi bi-trash"></i> Remove </td><i class="bi bi-person">
                         {% endfor%}
                 </tr>
     {% else %}

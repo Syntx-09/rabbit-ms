@@ -15,30 +15,29 @@ def home():
     return render_template('home.html', user=current_user)
 
 
-@views.route('/list')
+@views.route('rabbit/list')
 @login_required
 def list():
+    #list all rabbits owned by user
     return render_template('rabbit/rabbit_list.html', user=current_user)
 
 
-@views.route('/list/categories', methods=['GET', 'POST'])
+@views.route('/rabbit/categories', methods=['GET', 'POST'])
 def categories():
     if request.method == 'POST':
         add_category = request.form.get('addCategory')
 
-        new_category = Category(category=add_category)
+        new_category = Category(category=add_category, user_id=current_user.id)
         db.session.add(new_category)
         db.session.commit()
 
         flash("Category added successfully", category="success")
 
     categories = Category.query.filter_by(user_id=current_user.id).all()
-    # rabbit = Rabbit.query.
-    # categories2 = Rabbit.query.filter(category).all()
     return render_template('rabbit/categories.html', user=current_user, categories=categories, )
 
 
-@views.route('/add', methods=['GET', 'POST'])
+@views.route('/addRabbit', methods=['GET', 'POST'])
 @login_required
 def add():
     if request.method == 'POST':
@@ -63,23 +62,29 @@ def add():
             db.session.commit()
 
             flash('Rabbit added to hutch successfully', category='success')
+    category = Category.query.filter_by(user_id = current_user.id)
 
-    return render_template('add.html', user=current_user)
+    return render_template('rabbit/addRabbit.html', user=current_user, category = category)
 
 
 @views.route('/user/overview')
 @login_required
-def profile():
-    # tot = print(Rabbit.query.count())
+def user_profile():
     rabbit = Rabbit.query.filter_by()
     boy = 'thi id  a s'
-    # r1 = dict(Rabbit(name='',sex='',uid='',category='',user_id='', kindled_date=''))
-    # r2 = current_user.rabbits
     return render_template('user/user_profile.html', rabbit=[rabbit, boy], user=current_user)
 
 
 @views.route('/rabbit/<rabbit_id>')
 @login_required
 def get_rabbit(rabbit_id):
+    #retrieve rabbit profile
+    category = Category.query.filter_by(user_id = current_user.id)
     rabbit = Rabbit.query.filter_by(rab_uid=rabbit_id).first_or_404()
-    return render_template('rabbit/rabbit_profile.html', rabbit=rabbit, user=current_user)
+    return render_template('rabbit/rabbit_profile.html', category=category, rabbit=rabbit, user=current_user)
+
+# @views.route('/rabbit/<rabbit_uid>/update')
+# @login_required
+# def edit_rabbit(rabbit_uid):
+#     rabbit = Rabbit.query.filter_by(rab_uid=rabbit_uid).first_or_404()
+#     return render_template('rabbit/update_rabbit.html', rabbit=rabbit, user=current_user)

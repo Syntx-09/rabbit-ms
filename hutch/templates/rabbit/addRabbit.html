@@ -27,12 +27,15 @@
                 </div>
                 
                 <div class="form-group">
-                    <label class="form-check-label" for="category">Category:</label>
-                    <select class="custom-select" id="category" name="category">
-                        <option value="angora"> Angora</option>
-                        <option value="palomino"> palomino</option>
-                        <option value="harlequin"> Harlequin</option>
-                        <option value="others"> others</option>
+                    <label class="form-check-label" for="category">Breed:</label>
+                    <select class="custom-select" id="category" name="category">dddd
+                        {% if category %}
+                        {% for category in category %}
+                        <option value="{{ category.category }}"> {{ category.category }}</option>
+                        {% endfor %}
+                        <!-- <option value="undefined"> Undefined </option> -->
+                        <!-- <option value="undefined"> You don't have any defined breed yet! </option> -->
+                        {% endif %}
                     </select>
                 </div>
                 <div class="form-group">

@@ -36,7 +36,7 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(30), unique=True)
     password = db.Column(db.String(20))
     rabbits = db.relationship('Rabbit', backref='owner', lazy=True)
-    categories = db.relationship('Category', backref='ohwner', lazy=True)
+    categories = db.relationship('Category', backref='owner', lazy=True)
 
     def __iter__(self):
         iters = dict((key, value) for key, value in Rabbit.__dict__.items() if key[:2] != '__')
@@ -47,5 +47,5 @@ class User(db.Model, UserMixin):
 
 class Category(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    category = db.Column(db.String(40), unique=True)
+    category = db.Column(db.String(40), unique=True, default='None')
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=True)
