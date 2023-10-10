@@ -81,8 +81,7 @@ def get_rabbit(rabbit_uid):
     category = Category.query.filter_by(user_id = current_user.id)
     rabbit = Rabbit.query.filter_by(rab_uid=rabbit_uid).first_or_404()
 
-
-
+    #Update rabbit details/Profile
     if request.method == 'POST':
         name = request.form.get('name')
         sex = request.form.get('sex')
@@ -99,44 +98,15 @@ def get_rabbit(rabbit_uid):
         elif len(name) < 2:
             flash('ID must be more than 1 character', category='error')
         else:
-            new_rabbit = Rabbit(name=name, sex=sex, category=category, kindled_date=kindled_date, uid=uid,
+            rabbit = Rabbit(name=name, sex=sex, category=category, kindled_date=kindled_date, uid=uid,
                                 user_id=current_user.id)
-            db.session.add(new_rabbit)
+            db.session.add(rabbit)
             db.session.commit()
 
 
             flash('Rabbit updated successfully', category='success')
 
     return render_template('rabbit/rabbit_profile.html', category=category, rabbit=rabbit, user=current_user)
-
-@views.route('/rabbit/<rabbit_uid>/update')
-@login_required
-def edit_rabbit(rabbit_uid):
-    rabbit = Rabbit.query.filter_by(rab_uid=rabbit_uid).first_or_404()
-
-    if request.method == 'POST':
-        name = request.form.get('name')
-        sex = request.form.get('sex')
-        category = request.form.get('category')
-        if request.form.get('kindled_date') == '':
-            kindled_date = datetime.strptime('1100-01-03', '%Y-%B-%d')
-        else:
-            kindled_date = datetime.strptime(request.form.get('kindled_date'), '%Y-%m-%d')
-        uid = gen_uid(6)
-
-        rabbit_name = Rabbit.query.filter_by(name=name).first()
-        if rabbit_name:
-            flash('A rabbit with that ID already exist', category='error')
-        elif len(name) < 2:
-            flash('ID must be more than 1 character', category='error')
-        else:
-            new_rabbit = Rabbit(name=name, sex=sex, category=category, kindled_date=kindled_date, uid=uid,
-                                user_id=current_user.id)
-            db.session.add(new_rabbit)
-            db.session.commit()
-
-            flash('Rabbit added to hutch successfully', category='success')
-    return render_template('rabbit/rabbit_profile.html', rabbit=rabbit, user=current_user)
 
 @views.route('/rabbit/<rabbit_uid>/')
 @login_required
