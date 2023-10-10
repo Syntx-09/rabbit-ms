@@ -24,10 +24,8 @@
                     <th  scope="row"> {{ rabbit.name }} <br> </th>
                     <td> {{ rabbit.category }}  </td>
                     <td> {{ rabbit.sex }}  </td>
-                    <td> <a href="{{url_for('views.get_rabbit', rabbit_id =rabbit.rab_uid )}}"
-                            class="btn btn-info">Details</a>
-                    </td>
-                    <td> <i class="bi bi-trash"></i> Remove </td><i class="bi bi-person">
+                    <td> <a href="{{url_for('views.get_rabbit', rabbit_uid =rabbit.rab_uid )}}" class="btn btn-info">Details</a></td>
+                    <td> <i class="bi bi-trash"></i><a href="{{url_for('views.delete_rabbit', rabbit_uid =rabbit.rab_uid )}}" > Remove </a></td>
                         {% endfor%}
                 </tr>
     {% else %}

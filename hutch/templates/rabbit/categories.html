@@ -25,36 +25,20 @@
 
 {% if categories %}
     {% for category in categories %}
-{{ category.category }}
-    {% endfor %}
-{% else %}
-No Category at the moment
-{% endif %}
-
-<hr>
-{% if categories2 %}
-    {% for category in categories2 %}
+    <div>
         {{ category.category }}
-
+    </div>
     {% endfor %}
 {% else %}
-No Category at the moment
+You have no defined breed
 {% endif %}
 
 <hr>
+{% if rabbit %}
+{% for rabbit in rabbit %}
+{{ rabbit }}
 
-
-
-
-
-
-{% if user.rabbits %}
-    {% for rabbit in user.rabbits %}
-
-        {{ rabbit['category'] }}
-    {% endfor %}
-    
-    
+{% endfor %}
 {% endif %}
 
 {% endblock %}

@@ -22,7 +22,7 @@
     </tr>
     <tr>
       <th scope="row"> Kindled date</th>
-      <td>{{ rabbit['kindled_date'].strftime('%Y-%m-%d') }}</td>
+      <td>{{ rabbit['kindled_date'].strftime('%a %d-%B-%Y') }}</td>
     </tr>
   </tbody>
 </table>
@@ -73,22 +73,22 @@
                                 {% for category in category %}
                                 <option value="{{ category.category }}"> {{ category.category }}</option>
                                 {% endfor %}
-                                <option value="undefined"> Undefined </option>
                                 {% else %}
-                                You don't have any defined breed yet!
+                                <option value="undefined"> Undefined </option>
+                                <!-- You don't have any defined breed yet! -->
                                 {% endif %}
                             </select>
                           </div>
 
                           <div class="form-group">
-                            <label class="" for="kindle-date">kindled date: {{ rabbit['kindled_date'].strftime('%Y-%m-%d') }}</label>
-                            <input type="date" class="form-control" name="kindle-date" />
+                            <label class="" for="kindled-date">kindled date: {{ rabbit['kindled_date'].strftime('%Y-%m-%d') }}</label>
+                            <input type="date" class="form-control" name="kindled_date" />
                           </div>
 
                           <div>
                               {% if rabbit.sex == 'doe'  %}
                               <label for="EKD">Expected kindle date</label>
-                              <input type="date" class="form-control" name="EKD"
+                              <input type="date" class="form-control" name="EKD" >
                               {% endif %}
                           </div>
 
@@ -99,13 +99,13 @@
                           <input type="submit"  class="btn btn-primary" value="Update"/>
                       </div>
 
-              </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
       </div>
-    </div>
+                  </form>
+</div>
   </div>
 </div>
             {% endif %}
